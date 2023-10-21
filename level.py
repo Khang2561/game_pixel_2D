@@ -13,17 +13,19 @@ class Level:
         #sprite setup
         self.create_map()
     def create_map(self):
+        #print game map
         for row_index, row in enumerate(WORLD_MAP):
             for col_index, col in enumerate(row):
                 x = col_index * TILESIZE
                 y = row_index * TILESIZE
+                #set x is rock and p is player
                 if col == 'x':
                     Tile((x, y), [self.visible_sprites,self.obstacles_sprites])#output rock
                 if col == 'p':
                     self.player = Player((x, y), [self.visible_sprites],self.obstacles_sprites)#output player
 
     def run(self):
-        #update and draw the game
+        #update and draw the game when move
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
 
@@ -45,4 +47,4 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.offset.y = player.rect.centery - self.half_height
         for sprite in self.sprites():
             offset_pos = sprite.rect.topleft - self.offset
-            self.display_surface.blit(sprite.image, offset_pos )
+            self.display_surface.blit(sprite.image, offset_pos)
