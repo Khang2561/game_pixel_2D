@@ -31,16 +31,16 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
 
     def move(self, speed):
-        # up and down
+        # up and down collision
         self.rect.x += self.direction.x * speed
         self.collision('horizontal')
         self.rect.y += self.direction.y * speed
         self.collision('vertical')
         #self.rect.center += self.direction * speed
-        #
+        # diagonal line
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
-    #collision fumction
+    #collision fumctionc
     def collision(self,direction):
         if direction == 'horizontal':
             for sprite in self.obstacle_sprites:
